@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'list_items.dart';
 
+List<String> tempConvList = ["Celsius","Kelvin","Fahrenheit"];
+List<String> lengthList = ["m","cm","mm"];
+List<String> timeList = ["Min","Hrs","Sec"];
+String convOutput = "";
 
 TextField inputValue()
 {
@@ -39,17 +43,24 @@ TextField outputValue()
 class UnitCalc extends StatefulWidget
 {
      final Color appBarcolor;
-     const UnitCalc(this.appBarcolor, {super.key});
+     final String type;
+     const UnitCalc(this.appBarcolor,this.type, {super.key});
     @override
     UnitCalcState createState() => UnitCalcState();
 }
 
 class UnitCalcState extends State<UnitCalc>
 {
-  List<String> tempConvList = ["Celsius","Kelvin","Fahrenheit"];
-  List<String> lengthList = ["m","cm","mm"];
-  List<String> timeList = ["Min","Hrs","Sec"];
-
+  List<String>currentList = [];
+  String currentItem = "";
+  String currentItemOut = "";
+  @override
+void initState() {
+    super.initState();
+    currentList = visibleList(widget.type);
+    currentItem = inputConv(widget.type);
+    currentItemOut = outputConv(widget.type);
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -79,13 +90,13 @@ class UnitCalcState extends State<UnitCalc>
             children: [
               DropdownButton<String>(
                 padding: const EdgeInsets.only(left: 50),
-                value:tempChosen, // Set the initial value
+                value:currentItem, // Set the initial value
                 onChanged: (String? newValue){
                   setState(() {
-                    tempChosen = newValue!;
+                    currentItem = newValue!;
                   });
                 },
-                items: tempConvList.map<DropdownMenuItem<String>>((String value) {
+                items: currentList.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -97,14 +108,14 @@ class UnitCalcState extends State<UnitCalc>
               ),
               DropdownButton<String>(
                 padding: const EdgeInsets.only(left: 20),
-                value:outputTemp, // Set the initial value
+                value:currentItemOut, // Set the initial value
                 onChanged: (String? newValue){
                   setState(() {
-                    outputTemp = newValue!;
+                    currentItemOut = newValue!;
                   });
                 },
                 items:
-                tempConvList.map<DropdownMenuItem<String>>((String value) {
+                currentList.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),

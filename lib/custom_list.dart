@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'unit_calc.dart';
 
-Container itemMaker(String txtItem, IconData iconItem, Color color, BuildContext context) {
+Container itemMaker(String txtItem, IconData iconItem, Color color, BuildContext context,String type) {
   return Container(
     padding: const EdgeInsets.only(top: 20),
     child: Material(
@@ -10,7 +10,7 @@ Container itemMaker(String txtItem, IconData iconItem, Color color, BuildContext
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => UnitCalc(color)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => UnitCalc(color,type)));
         },
         child: Container(
           width: 250,
@@ -60,9 +60,9 @@ class CustomList extends StatelessWidget
                       {
                         return Column(
                           children: [
-                            itemMaker(convList[index],iconList[index],Colors.pink[600]!,context),
-                            itemMaker(convList[index+1],iconList[index+1],Colors.red[100]!,context),
-                            itemMaker(convList[index+2],iconList[index+2],Colors.greenAccent,context),
+                            itemMaker(convList[index],iconList[index],Colors.pink[600]!,context,"temp"),
+                            itemMaker(convList[index+1],iconList[index+1],Colors.red[100]!,context,"length"),
+                            itemMaker(convList[index+2],iconList[index+2],Colors.greenAccent,context,'time'),
                           ],
                         );
                       }

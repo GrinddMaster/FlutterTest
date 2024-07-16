@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'unit_calc.dart';
 
 String tempChosen = "Celsius";
 String outputTemp = "Celsius";
@@ -55,7 +56,34 @@ DropdownButton timeConv(String valueChosen,List<String> items,void Function(Stri
       }).toList(),
     );
 }
-String Test()
+String inputConv(String type)
 {
-  return "Helow";
+  switch(type)
+  {
+    case 'temp':return tempChosen;
+    case 'length':return lengthChosen;
+    case 'time':return timeChosen;
+    default:return "";
+  }
+}
+String outputConv(String type)
+{
+switch(type)
+  {
+    case 'temp':return outputTemp;
+    case 'length':return outputLength;
+    case 'time':return outputTime;
+    default:return "";
+  }
+}
+List<String> visibleList(String type)
+{
+  List<String>empty = [];
+  switch(type)
+      {
+    case 'temp':return tempConvList;
+    case 'length':return lengthList;
+    case 'time':return timeList;
+    default:return empty;
+  }
 }
