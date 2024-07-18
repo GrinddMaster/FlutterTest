@@ -1,7 +1,10 @@
 String tempPicker(String input, String output, String inputTextField) {
   double inputValue;
   double outputValue;
-
+if(inputTextField.isEmpty)
+  {
+    return "";
+  }
   try {
     inputValue = double.parse(inputTextField);
   } catch (e) {

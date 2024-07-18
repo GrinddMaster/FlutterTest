@@ -15,24 +15,19 @@ void textFieldChanger(String type,String currentItem,String currentItemOut)
 {
   if(type == "temp" )
   {
+    outputTextField = tempPicker(currentItem,currentItemOut,userInput.text);
     updateOutput();
-    outputTextField = tempPicker(currentItem,currentItemOut,inputTextField);
   }
   else if(type == "time")
   {
+    outputTextField = timePicker(currentItem, currentItemOut,userInput.text);
     updateOutput();
-    outputTextField = timePicker(currentItem, currentItemOut,inputTextField);
   }
   else if (type == "length")
   {
+    outputTextField = distPicker(currentItem, currentItemOut,userInput.text);
     updateOutput();
-    outputTextField = distPicker(currentItem, currentItemOut,inputTextField);
   }
-  if(inputTextField.isEmpty)
-    {
-      updateOutput();
-      outputTextField = "";
-    }
 }
 
 DropdownButton temp(String valueChosen,List<String> items,void Function(String) onChanged) {

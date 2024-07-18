@@ -3,6 +3,10 @@ String timePicker(String input, String output, String inputTextField)
 {
   String outputTextField = "";
   int inputValue = 0;
+  if(inputTextField.isEmpty)
+    {
+      return "";
+    }
   try{
      inputValue = int.parse(inputTextField);
   }
