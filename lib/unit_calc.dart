@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'list_items.dart';
 
+List<String>currentList = [];
 List<String> tempConvList = ["Celsius","Kelvin","Fahrenheit"];
-List<String> lengthList = ["m","cm","mm"];
+List<String> lengthList = ["m","cm","mm","km"];
 List<String> timeList = ["Min","Hrs","Sec"];
-String convOutput = "";
+String inputTextField = " ";
+String outputTextField = " ";
+String currentItem = "";
+String currentItemOut = "";
+String typeGetter = "";
 
+ final TextEditingController textOutput = TextEditingController();
+final TextEditingController userInput = TextEditingController();
 TextField inputValue()
 {
-  final  userInput = TextEditingController();
+  inputTextField = userInput.text.toString();
   return TextField(
+    onChanged: (value){textFieldChanger(typeGetter, currentItem, currentItemOut);},
     controller: userInput,
     decoration:  InputDecoration(
       border: const OutlineInputBorder(),
@@ -23,21 +31,25 @@ TextField inputValue()
     keyboardType: TextInputType.number,
     inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,
     ],
-
   );
 }
 TextField outputValue()
 {
   return  TextField(
+    controller: textOutput,
     readOnly: true,
     decoration: const InputDecoration(
       border: OutlineInputBorder(),
       hintText: "OutPut"
     ),
-    keyboardType: TextInputType.number,
-    inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,
-    ],
+  //  inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,
+    //],
   );
+}
+void updateOutput()
+{
+  textOutput.text = outputTextField;
+   inputTextField = userInput.text;
 }
 
 class UnitCalc extends StatefulWidget
@@ -51,18 +63,17 @@ class UnitCalc extends StatefulWidget
 
 class UnitCalcState extends State<UnitCalc>
 {
-  List<String>currentList = [];
-  String currentItem = "";
-  String currentItemOut = "";
   @override
 void initState() {
     super.initState();
+    inputTextField = userInput.text;
     currentList = visibleList(widget.type);
     currentItem = inputConv(widget.type);
     currentItemOut = outputConv(widget.type);
   }
   @override
   Widget build(BuildContext context) {
+    typeGetter = widget.type;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -71,7 +82,10 @@ void initState() {
           backgroundColor: widget.appBarcolor,
           leading: BackButton(
             color: Colors.white,
-            onPressed: (){ Navigator.pop(context);},
+            onPressed: (){
+              textOutput.text = "";
+              userInput.text = "";
+              Navigator.pop(context);},
           ),
         ),
         body: Column(

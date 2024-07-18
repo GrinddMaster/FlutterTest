@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'unit_calc.dart';
+import 'Data/temp_calculations.dart';
+import 'package:workpls/Data/distance_calculations.dart';
+import 'package:workpls/Data/time_calculations.dart';
 
 String tempChosen = "Celsius";
 String outputTemp = "Celsius";
@@ -7,6 +10,30 @@ String timeChosen = "Min";
 String outputTime = "Min";
 String lengthChosen = "m";
 String outputLength = "m";
+
+void textFieldChanger(String type,String currentItem,String currentItemOut)
+{
+  if(type == "temp" )
+  {
+    updateOutput();
+    outputTextField = tempPicker(currentItem,currentItemOut,inputTextField);
+  }
+  else if(type == "time")
+  {
+    updateOutput();
+    outputTextField = timePicker(currentItem, currentItemOut,inputTextField);
+  }
+  else if (type == "length")
+  {
+    updateOutput();
+    outputTextField = distPicker(currentItem, currentItemOut,inputTextField);
+  }
+  if(inputTextField.isEmpty)
+    {
+      updateOutput();
+      outputTextField = "";
+    }
+}
 
 DropdownButton temp(String valueChosen,List<String> items,void Function(String) onChanged) {
   return
