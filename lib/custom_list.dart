@@ -44,8 +44,8 @@ class CustomList extends StatelessWidget
   @override
   Widget build(BuildContext context) {
 
-  final List<String> convList = ['Temp','Length','Time'];
-   final List<IconData> iconList = [Icons.ac_unit_outlined,Icons.accessibility_rounded,Icons.access_time_outlined];
+  final List<String> convList = ['Temp','Length','Time','Volume'];
+   final List<IconData> iconList = [Icons.ac_unit_outlined,Icons.accessibility_rounded,Icons.access_time_outlined,Icons.water_drop_outlined];
     return
         SizedBox(
           height: 500,
@@ -63,6 +63,7 @@ class CustomList extends StatelessWidget
                             itemMaker(convList[index],iconList[index],Colors.pink[600]!,context,"temp"),
                             itemMaker(convList[index+1],iconList[index+1],Colors.red[100]!,context,"length"),
                             itemMaker(convList[index+2],iconList[index+2],Colors.greenAccent,context,'time'),
+                            itemMaker(convList[index+3],iconList[index+3],Colors.blue[200]!,context,'volume')
                           ],
                         );
                       }

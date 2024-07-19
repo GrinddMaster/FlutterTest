@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workpls/Data/volume_calculation.dart';
 import 'unit_calc.dart';
 import 'Data/temp_calculations.dart';
 import 'package:workpls/Data/distance_calculations.dart';
@@ -10,22 +11,22 @@ String timeChosen = "Min";
 String outputTime = "Min";
 String lengthChosen = "m";
 String outputLength = "m";
+String volumeChosen = "cm\u00B3";
+String outputVolume = "cm\u00B3";
 
 void textFieldChanger(String type,String currentItem,String currentItemOut)
 {
-  if(type == "temp" )
-  {
+  if(type == "temp" ) {
     outputTextField = tempPicker(currentItem,currentItemOut,userInput.text);
     updateOutput();
-  }
-  else if(type == "time")
-  {
+  } else if(type == "time"){
     outputTextField = timePicker(currentItem, currentItemOut,userInput.text);
     updateOutput();
-  }
-  else if (type == "length")
-  {
+  } else if (type == "length") {
     outputTextField = distPicker(currentItem, currentItemOut,userInput.text);
+    updateOutput();
+  } else if (type == "volume") {
+    outputTextField = volumePicker(currentItem, currentItemOut, userInput.text);
     updateOutput();
   }
 }
@@ -85,6 +86,7 @@ String inputConv(String type)
     case 'temp':return tempChosen;
     case 'length':return lengthChosen;
     case 'time':return timeChosen;
+    case 'volume':return volumeChosen;
     default:return "";
   }
 }
@@ -95,6 +97,7 @@ switch(type)
     case 'temp':return outputTemp;
     case 'length':return outputLength;
     case 'time':return outputTime;
+  case 'volume':return outputVolume;
     default:return "";
   }
 }
@@ -106,6 +109,7 @@ List<String> visibleList(String type)
     case 'temp':return tempConvList;
     case 'length':return lengthList;
     case 'time':return timeList;
+    case 'volume':return volumeList;
     default:return empty;
   }
 }

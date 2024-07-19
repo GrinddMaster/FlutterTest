@@ -7,6 +7,7 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Scaffold(
+      backgroundColor: Colors.cyan[100],
       appBar: AppBar(
         backgroundColor: Colors.blue[300],
         title: const Text('Unit Converter',style: TextStyle(

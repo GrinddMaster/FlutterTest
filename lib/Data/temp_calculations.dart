@@ -22,8 +22,7 @@ if(inputTextField.isEmpty)
   } else if (input == "Fahrenheit" && output == "Kelvin") {
     outputValue = fTok(inputValue);
   } else if (input == "Kelvin" && output == "Fahrenheit") {
-    outputValue = kTof(inputValue);
-  } else {
+    outputValue = kTof(inputValue); } else {
     return "Invalid conversion";
   }
 
