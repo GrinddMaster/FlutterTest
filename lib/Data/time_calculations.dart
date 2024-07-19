@@ -3,41 +3,32 @@ String timePicker(String input, String output, String inputTextField)
 {
   String outputTextField = "";
   int inputValue = 0;
-  if(inputTextField.isEmpty)
-    {
-      return "";
-    }
   try{
      inputValue = int.parse(inputTextField);
   }
   catch(e){
     return "Invalid input $inputTextField";
   }
-  if(input == "Min" && output == "Hrs")
-    {
-     outputTextField = mToH(inputValue);
-    }
 
-  if(input == "Hrs" && output == "Min")
+  if(inputTextField.isEmpty)
   {
+    return "";
+  } else if(input == "Min" && output == "Hrs") {
+     outputTextField = mToH(inputValue);
+  } else if(input == "Hrs" && output == "Min") {
    outputTextField = hTom(inputValue);
-  }
-  if(input == "Sec" && output == "Min")
-  {
+  } else if(input == "Sec" && output == "Min") {
     outputTextField = sTom(inputValue);
-  }
-  if(input == "Min" && output == "Sec")
-  {
+  } else if(input == "Min" && output == "Sec") {
     outputTextField = mTos(inputValue);
-  }
-  if(input == "Hrs" && output == "Sec")
-  {
+  } else if(input == "Hrs" && output == "Sec") {
     outputTextField = hTos(inputValue);
-  }
-  if(input == "Sec" && output == "Hrs")
-  {
+  } else if(input == "Sec" && output == "Hrs") {
     outputTextField = sToh(inputValue);
+  } else{
+    outputTextField = "invalid Conversion";
   }
+
   return outputTextField;
 }
 

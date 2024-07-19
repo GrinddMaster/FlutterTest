@@ -8,11 +8,10 @@ void main() {
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[20],
-        foregroundColor: Colors.blue,
+        backgroundColor: Colors.blue[300],
         title: const Text('Unit Converter',style: TextStyle(
           fontWeight: FontWeight.bold,
-          color:Colors.blue,
+          color:Colors.white,
         ),),
       ),
       body: const CustomList(),

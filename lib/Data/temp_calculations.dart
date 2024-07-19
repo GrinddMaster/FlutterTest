@@ -8,7 +8,7 @@ if(inputTextField.isEmpty)
   try {
     inputValue = double.parse(inputTextField);
   } catch (e) {
-    return "Invalid input: $inputTextField";
+    return "Invalid input";
   }
 
   if (input == "Celsius" && output == "Fahrenheit") {

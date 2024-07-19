@@ -2,88 +2,76 @@
 String distPicker(String input, String output, String inputTextField)
 {
   String outputTextField = "";
-  int inputValue = 0;
+  double inputValue = 0;
   if(inputTextField.isEmpty)
     {
       return "";
     }
   try{
-    inputValue = int.parse(inputTextField);
+    inputValue = double.parse(inputTextField);
   }catch(e){
     return "Invalid input $inputTextField";
   }
   if(input == "cm" && output == "m")
     {
       outputTextField = cmTom( inputValue);
-    }
-  if(input == "m" && output == "cm")
-  {
+    } else if(input == "m" && output == "cm") {
     outputTextField = mTocm(inputValue);
-  }
-  if(input == "km" && output == "m")
-  {
+  } else if(input == "km" && output == "m") {
     outputTextField = kmTom(inputValue);
-  }
-  if(input == "m" && output == "km")
-  {
+  } else if(input == "m" && output == "km") {
     outputTextField = mTokm(inputValue);
-  }
-  if(input == "cm" && output == "km")
-  {
+  } else if(input == "cm" && output == "km") {
     outputTextField = cmTokm(inputValue);
-  }
-  if(input == "km" && output == "cm")
-  {
+  } else if(input == "km" && output == "cm") {
     outputTextField = kmTocm(inputValue);
-  }
-  if(input == "mm" && output == "cm")
-  {
+  } else if(input == "mm" && output == "cm") {
     outputTextField = mmTocm(inputValue);
-  }
-  if(input == "cm" && output == "mm")
-  {
+  } else if(input == "cm" && output == "mm") {
     outputTextField = cmTomm(inputValue);
+  } else {
+    outputTextField = "Invalid Conversion";
   }
 
   return outputTextField;
 }
 
-String cmTom(int input)
+String cmTom(double input)
 {
-  input = (input ~/ 100) ;
+  input = (input / 100) ;
   return input.toString();
 }
-String mTocm(int input)
+String mTocm(double input)
 {
   input *= 100;
   return input.toString();
 }
-String mTokm(int input)
+String mTokm(double input)
 {
-  input = (input ~/1000) ;
+  input = (input /1000) ;
   return input.toString();
 }
-String kmTom(int input)
+String kmTom(double input)
 {
   input *= 1000;
   return  input.toString();
 }
-String kmTocm(int input)
+String kmTocm(double input)
 {
   input *= 100000;
   return input.toString();
 }
-String cmTokm(int input)
+String cmTokm(double input)
 {
-  input = (input ~/100000);
+  input = (input /100000);
   return  input.toString();
 }
-String mmTocm(int input)
+String mmTocm(double input)
 {
-  input = (input~/10);// ~/ for integer division.
+  input = (input/10);// ~/ for integer division.
   return input.toString();
 }
-String cmTomm(int input)
+String cmTomm(double input)
 {
   input *= 10;
   return input.toString();

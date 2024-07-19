@@ -27,7 +27,7 @@ TextField inputValue()
       )
     ),
     keyboardType: TextInputType.number,
-    inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,
+    inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9.-]')),
     ],
   );
 }
