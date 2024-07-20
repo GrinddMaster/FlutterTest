@@ -30,7 +30,7 @@ String distPicker(String input, String output, String inputTextField)
   } else if(input == "cm" && output == "mm") {
     outputTextField = cmTomm(inputValue);
   } else {
-    outputTextField = "Invalid Conversion";
+    outputTextField = inputValue.toString();
   }
 
   return outputTextField;

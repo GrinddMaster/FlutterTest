@@ -34,9 +34,8 @@ String volumePicker(String input, String output, String inputTextField)
   }else if(input == "m\u00B3" && output == "Liter") {
     outputValue = lTom(inputVolume);
   } else {
-      return "Invalid Conversion";
+      outputValue = inputVolume;
     }
-
   return outputValue.toString();
 }
 

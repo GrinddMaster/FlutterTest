@@ -26,7 +26,7 @@ String timePicker(String input, String output, String inputTextField)
   } else if(input == "Sec" && output == "Hrs") {
     outputTextField = sToh(inputValue);
   } else{
-    outputTextField = "invalid Conversion";
+    outputTextField = inputValue.toString();
   }
 
   return outputTextField;

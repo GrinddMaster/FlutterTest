@@ -23,7 +23,7 @@ if(inputTextField.isEmpty)
     outputValue = fTok(inputValue);
   } else if (input == "Kelvin" && output == "Fahrenheit") {
     outputValue = kTof(inputValue); } else {
-    return "Invalid conversion";
+    outputValue = inputValue;
   }
 
   return outputValue.toString();
