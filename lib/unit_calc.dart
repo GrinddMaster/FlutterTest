@@ -13,6 +13,23 @@ String currentItem = "";
 String currentItemOut = "";
 String typeGetter = "";
 
+String titleMaker(String type)
+{
+  if(type == "temp")
+    {
+      return 'Temperature';
+    } else if(type == 'length'){
+    return 'Length';
+  } else if(type == 'time'){
+    return 'Time';
+  } else if(type == 'volume'){
+    return 'Volume';
+  }else{
+    return 'Error';
+  }
+}
+
+
  final TextEditingController textOutput = TextEditingController();
 final TextEditingController userInput = TextEditingController();
 
@@ -25,7 +42,11 @@ TextField inputValue()
       border: const OutlineInputBorder(),
       hintText: 'Conversion',
       suffixIcon: IconButton(
-          onPressed: (){userInput.clear();},
+          onPressed: ()
+            {
+            userInput.clear();
+            textOutput.clear();
+            },
           icon:  const Icon(Icons.clear)
       )
     ),
@@ -77,7 +98,7 @@ void initState() {
       home: Scaffold(
         backgroundColor: Colors.cyan[100],
         appBar: AppBar(
-          title:const Text('Convert',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)
+          title: Text(titleMaker(widget.type),style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white)
             ,) ,
           backgroundColor: widget.appBarcolor,
           leading: BackButton(
@@ -108,6 +129,7 @@ void initState() {
                 onChanged: (String? newValue){
                   setState(() {
                     currentItem = newValue!;
+                    textFieldChanger(widget.type, currentItem, currentItemOut);
                   });
                 },
                 items: currentList.map<DropdownMenuItem<String>>((String value) {
@@ -126,6 +148,7 @@ void initState() {
                 onChanged: (String? newValue){
                   setState(() {
                     currentItemOut = newValue!;
+                    textFieldChanger(widget.type, currentItem, currentItemOut);
                   });
                 },
                 items:
