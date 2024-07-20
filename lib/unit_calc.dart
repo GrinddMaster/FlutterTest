@@ -95,6 +95,7 @@ void initState() {
   Widget build(BuildContext context) {
     typeGetter = widget.type;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.cyan[100],
         appBar: AppBar(
