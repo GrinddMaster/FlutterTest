@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'GUI/homeui.dart';
+import 'package:testingapis/GUI/alert_dialog.dart';
 
 void main() async {
   Home home = const Home();
@@ -19,7 +20,7 @@ void colorSwitcher(bool value) {
   }
 }
 
-bool colorFlag = true;//Used to switch the color of the testbody
+bool colorFlag = true; //Used to switch the color of the testbody
 String data = "";
 List post = [];
 Color testColor = Colors.green;
@@ -46,7 +47,6 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   const MyHomePage({super.key, required this.title});
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(
-          "This a test",
+          "This a 🍌",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -97,7 +97,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(color: Colors.blue, width: 1),
                 ),
-                onTap: test,
+                onTap: () {
+					if(index.isOdd){
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('alert'),
+                          content: const Text("This a🍍"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        );
+                      });
+					}
+					else{test();}
+                },
               );
             },
           ),
