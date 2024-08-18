@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqlonmob/utils/dbmaker.dart';
 import 'package:sqlonmob/utils/users.dart';
+import 'package:sqlonmob/interface/list_users.dart';
 
 String output = '';
 
@@ -11,6 +12,10 @@ void main() async {
       const User(id: 20, name: "Jhonny", age: 21, address: "a7a street"));
   dBh.insertUser(
       const User(id: 30, name: "Timmy", age: 22, address: "street 0"));
+  dBh.insertUser(
+      const User(id: 40, name: "Jeff", age: 23, address: "street 1"));
+  dBh.insertUser(
+      const User(id: 50, name: "Ziko", age: 24, address: "street 2"));
 
   List<User> users = await dBh.listForUsers();
   output = await dBh.showDbContents();
@@ -46,13 +51,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("SqliteImp"),
+        title: const Text(" 🍑 Sqlite"),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(output),
+            UserInterface(),
           ],
         ),
       ),
