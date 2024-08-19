@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqlonmob/utils/dbmaker.dart';
 import 'package:sqlonmob/utils/users.dart';
-import 'package:sqlonmob/interface/list_users.dart';
+import 'package:sqlonmob/interface/employee_interface.dart';
 
 String output = '';
 
@@ -17,7 +17,6 @@ void main() async {
   dBh.insertUser(
       const User(id: 50, name: "Ziko", age: 24, address: "street 2"));
 
-  List<User> users = await dBh.listForUsers();
   output = await dBh.showDbContents();
 
   runApp(const MyApp());
@@ -53,11 +52,17 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(" 🍑 Sqlite"),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            UserInterface(),
+            ElevatedButton(
+              child: const Text('View Employees'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Employees()));
+              },
+            ),
           ],
         ),
       ),

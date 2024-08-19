@@ -52,10 +52,11 @@ class _MyUsersState extends State<UserInterface> {
                     subtitle: Text(
                         'Id:${user.id}\tAge:${user.age}\nAddress:${user.address}'),
                     leading: Container(
-						decoration: const BoxDecoration(shape:BoxShape.circle,color: Colors.black),
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.black),
                         child: const Icon(
                           Icons.person_2_rounded,
-						  size: 40,
+                          size: 40,
                           color: Colors.grey,
                         )),
                   );
