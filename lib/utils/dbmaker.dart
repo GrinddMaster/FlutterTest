@@ -58,10 +58,10 @@ class DatabaseHandler {
     return test.toString();
   }
 
-  Future<String> removeUser() async {
+  Future<String> removeUser(int id) async {
     final db = await createDatabase();
     List<Map<String, dynamic>> test =
-        await db.rawQuery('DELETE FROM Users WHERE id = 20');
+        await db.rawQuery('DELETE FROM Users WHERE id = $id');
     return test.toString();
   }
 }

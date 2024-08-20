@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sqlonmob/interface/add_user_interface.dart';
 import 'package:sqlonmob/utils/dbmaker.dart';
 import 'package:sqlonmob/utils/users.dart';
+import 'package:sqlonmob/interface/list_interface.dart';
 
 DatabaseHandler dBh = DatabaseHandler();
 
@@ -34,13 +36,14 @@ class _EmployeeInterface extends State<Employees> {
         } else if (snapshot.hasError) {
           return Text('Error loading Employees: ${snapshot.error}');
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Text('🖕( ͡❛ ͜ʖ ͡❛)');
+          return listIntrfc(context);
         } else {
           return SizedBox(
             width: 700,
             height: 700,
             child: MaterialApp(
               home: Scaffold(
+                backgroundColor: Colors.black87,
                 appBar: AppBar(
                   backgroundColor: Colors.pinkAccent,
                   title: const Text("Employees 🚀"),
@@ -57,12 +60,22 @@ class _EmployeeInterface extends State<Employees> {
                   child: ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final users = snapshot.data![index];
+                      User users = snapshot.data![index];
                       return Container(
                         color: index % 2 == 0
                             ? Colors.grey
                             : Colors.brown, // Alternating colors
                         child: ListTile(
+                          trailing: IconButton(
+                            icon: const Icon(Icons.remove_circle_outlined,
+                                color: Colors.redAccent),
+                            onPressed: () {
+                              setState(() {
+                                dBh.removeUser(users.id);
+                                _empList = _fetchEmps();
+                              });
+                            },
+                          ),
                           iconColor: Colors.white,
                           dense: true,
                           textColor: Colors.black87,
@@ -72,15 +85,24 @@ class _EmployeeInterface extends State<Employees> {
                           ),
                           subtitle: Text(
                               'Name:${users.name}\tAge:${users.age}\nid:${users.id}\taddress:${users.address}'),
-                          leading: const Icon(Icons.person_rounded),
+                          leading: const Icon(
+                            Icons.person_rounded,
+                            color: Colors.white70,
+                          ),
                         ),
                       );
                     },
                   ),
                 ),
                 floatingActionButton: FloatingActionButton(
-                  onPressed: () {},
-                  child: const Icon(Icons.add),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const AddUserInterface()));
+                  },
+                  child: const Icon(Icons.person_add),
                 ),
               ),
             ),
