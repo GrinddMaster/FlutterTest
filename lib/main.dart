@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sqlonmob/utils/dbmaker.dart';
-import 'package:sqlonmob/utils/users.dart';
 import 'package:sqlonmob/interface/employee_interface.dart';
 
 String output = '';
@@ -8,14 +7,6 @@ String output = '';
 DatabaseHandler dBh = DatabaseHandler();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  dBh.insertUser(
-      const User(id: 20, name: "Jhonny", age: 21, address: "a7a street"));
-  dBh.insertUser(
-      const User(id: 30, name: "Timmy", age: 22, address: "street 0"));
-  dBh.insertUser(
-      const User(id: 40, name: "Jeff", age: 23, address: "street 1"));
-  dBh.insertUser(
-      const User(id: 50, name: "Ziko", age: 24, address: "street 2"));
 
   output = await dBh.showDbContents();
 

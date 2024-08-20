@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sqlonmob/interface/add_user_interface.dart';
+import 'package:sqlonmob/utils/users.dart';
 
-SizedBox listIntrfc(BuildContext context) {
+SizedBox listIntrfc(BuildContext context, AsyncSnapshot<List<User>> snapshot) {
+  //if(snapshot.hasData){Navigator.pop(context);}
   return SizedBox(
       width: 700,
       height: 700,
@@ -9,7 +11,7 @@ SizedBox listIntrfc(BuildContext context) {
           home: Scaffold(
         backgroundColor: Colors.black87,
         appBar: AppBar(
-          backgroundColor: Colors.pinkAccent,
+          backgroundColor: Colors.blueAccent,
           title: const Text("Employees 🚀"),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),

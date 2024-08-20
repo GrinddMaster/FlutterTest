@@ -35,9 +35,7 @@ class _EmployeeInterface extends State<Employees> {
           return const CircularProgressIndicator(); // Show a loading indicator while fetching data
         } else if (snapshot.hasError) {
           return Text('Error loading Employees: ${snapshot.error}');
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return listIntrfc(context);
-        } else {
+        }  else {
           return SizedBox(
             width: 700,
             height: 700,

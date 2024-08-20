@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sqlonmob/interface/employee_interface.dart';
+import 'package:sqlonmob/utils/users.dart';
+
+TextEditingController idcont = TextEditingController();
+TextEditingController namecont = TextEditingController();
+TextEditingController agecont = TextEditingController();
+TextEditingController addresscont = TextEditingController();
+
+String name = '';
+String address = '';
+int id = 0;
+int age = 0;
 
 class AddUserInterface extends StatefulWidget {
   const AddUserInterface({super.key});
@@ -19,6 +32,11 @@ class _AddUser extends State<AddUserInterface> {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
+                  //  Navigator.push(
+                  //      context,
+                  //      MaterialPageRoute(
+                  //          builder: (BuildContext context) =>
+                  //              const Employees()));
                   Navigator.pop(context);
                 },
               )),
@@ -29,7 +47,14 @@ class _AddUser extends State<AddUserInterface> {
                 Container(child: getTextFields()),
                 ElevatedButton(
                   child: const Text('Add'),
-                  onPressed: () {},
+                  onPressed: () {
+                    id = int.parse(idcont.text.toString());
+                    age = int.parse(agecont.text.toString());
+                    name = namecont.text.toString();
+                    address = addresscont.text.toString();
+                    dBh.insertUser(
+                        User(id: id, name: name, age: age, address: address));
+                  },
                 )
               ],
             ),
@@ -39,22 +64,28 @@ class _AddUser extends State<AddUserInterface> {
 }
 
 Column getTextFields() {
-  return const Column(
+  return Column(
     children: [
       TextField(
-        decoration: InputDecoration(
+        controller: idcont,
+        decoration: const InputDecoration(
             hintText: 'Id', hintStyle: TextStyle(color: Colors.grey)),
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       ),
       TextField(
-        decoration: InputDecoration(
+        controller: namecont,
+        decoration: const InputDecoration(
             hintText: 'Name', hintStyle: TextStyle(color: Colors.grey)),
       ),
       TextField(
-        decoration: InputDecoration(
-            hintText: 'Age', hintStyle: TextStyle(color: Colors.grey)),
+        controller: agecont,
+        decoration: const InputDecoration(
+            hintText: 'Age', hintStyle: const TextStyle(color: Colors.grey)),
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       ),
       TextField(
-        decoration: InputDecoration(
+        controller: addresscont,
+        decoration: const InputDecoration(
             hintText: 'Address', hintStyle: TextStyle(color: Colors.grey)),
       ),
     ],
