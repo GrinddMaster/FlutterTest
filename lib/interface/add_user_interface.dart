@@ -32,12 +32,11 @@ class _AddUser extends State<AddUserInterface> {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  //  Navigator.push(
-                  //      context,
-                  //      MaterialPageRoute(
-                  //          builder: (BuildContext context) =>
-                  //              const Employees()));
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const Employees()));
                 },
               )),
           body: Center(

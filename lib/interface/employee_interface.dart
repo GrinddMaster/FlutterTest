@@ -10,11 +10,17 @@ class Employees extends StatefulWidget {
   const Employees({super.key});
 
   @override
-  State<StatefulWidget> createState() => _EmployeeInterface();
+  State<StatefulWidget> createState() => EmployeeInterface();
 }
 
-class _EmployeeInterface extends State<Employees> {
+class EmployeeInterface extends State<Employees> {
   late Future<List<User>> _empList;
+
+  void updater() {
+    setState(() {
+      _empList = _fetchEmps();
+    });
+  }
 
   @override
   void initState() {
@@ -35,7 +41,7 @@ class _EmployeeInterface extends State<Employees> {
           return const CircularProgressIndicator(); // Show a loading indicator while fetching data
         } else if (snapshot.hasError) {
           return Text('Error loading Employees: ${snapshot.error}');
-        }  else {
+        } else {
           return SizedBox(
             width: 700,
             height: 700,
@@ -94,7 +100,7 @@ class _EmployeeInterface extends State<Employees> {
                 ),
                 floatingActionButton: FloatingActionButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
