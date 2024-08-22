@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sqlonmob/interface/employee_interface.dart';
 import 'package:sqlonmob/utils/users.dart';
 
@@ -53,6 +54,12 @@ class _AddUser extends State<AddUserInterface> {
                     address = addresscont.text.toString();
                     dBh.insertUser(
                         User(id: id, name: name, age: age, address: address));
+                    Fluttertoast.showToast(
+                      msg: 'User Added!',
+                      backgroundColor: Colors.blueGrey,
+                      textColor: Colors.white38,
+                      toastLength: Toast.LENGTH_SHORT,
+                    );
                   },
                 )
               ],
@@ -66,24 +73,28 @@ Column getTextFields() {
   return Column(
     children: [
       TextField(
+        style: const TextStyle(color: Colors.white),
         controller: idcont,
         decoration: const InputDecoration(
             hintText: 'Id', hintStyle: TextStyle(color: Colors.grey)),
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       ),
       TextField(
+        style: const TextStyle(color: Colors.white),
         controller: namecont,
         decoration: const InputDecoration(
             hintText: 'Name', hintStyle: TextStyle(color: Colors.grey)),
       ),
       TextField(
         controller: agecont,
+        style: const TextStyle(color: Colors.white),
         decoration: const InputDecoration(
-            hintText: 'Age', hintStyle: const TextStyle(color: Colors.grey)),
+            hintText: 'Age', hintStyle: TextStyle(color: Colors.grey)),
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       ),
       TextField(
         controller: addresscont,
+        style: const TextStyle(color: Colors.white),
         decoration: const InputDecoration(
             hintText: 'Address', hintStyle: TextStyle(color: Colors.grey)),
       ),

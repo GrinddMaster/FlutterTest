@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sqlonmob/interface/add_user_interface.dart';
 import 'package:sqlonmob/utils/dbmaker.dart';
 import 'package:sqlonmob/utils/users.dart';
-import 'package:sqlonmob/interface/list_interface.dart';
 
 DatabaseHandler dBh = DatabaseHandler();
 
