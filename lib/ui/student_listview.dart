@@ -68,7 +68,7 @@ class _StudentList extends State<StudentListview> {
         floatingActionButton: IconButton(
           onPressed: () {
             navigateToStudent(Student(
-                id: 10,
+                id: 'userid',
                 name: 'ali',
                 age: 20,
                 address: 'test',
@@ -97,8 +97,7 @@ class _StudentList extends State<StudentListview> {
 
   void onStudentRemoved(
       BuildContext context, Student student, int index) async {
-    //TODO: fix the child, the id isn't a String.
-    await studentRef.child(student.id.toString()).remove().then((_) {
+    await studentRef.child(student.id).remove().then((_) {
       setState(() {
         items.removeAt(index);
       });

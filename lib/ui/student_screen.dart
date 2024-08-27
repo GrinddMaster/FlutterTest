@@ -49,11 +49,17 @@ class _StuScrn extends State<StudentScreen> {
                 ),
                 TextField(
                   controller: description,
-                  decoration: const InputDecoration(hintText: 'hint'),
+                  decoration: const InputDecoration(hintText: 'description'),
                 ),
                 TextField(
                   controller: location,
                   decoration: const InputDecoration(hintText: 'location'),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: (widget.student.id.isEmpty)
+                      ? const Text('Update')
+                      : const Text('Add'),
                 ),
               ],
             ),

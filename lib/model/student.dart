@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Student {
-  int id = 0;
+  String id = '';
   String name = '';
   int age = 0;
   String address = '';
