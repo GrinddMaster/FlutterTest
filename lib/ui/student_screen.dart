@@ -57,7 +57,7 @@ class _StuScrn extends State<StudentScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: (widget.student.id.isEmpty)
+                  child: (widget.student.id.isNotEmpty)
                       ? const Text('Update')
                       : const Text('Add'),
                 ),
