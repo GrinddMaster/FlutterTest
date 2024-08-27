@@ -33,21 +33,27 @@ class _StuScrn extends State<StudentScreen> {
               children: [
                 TextField(
                   controller: id,
+                  decoration: const InputDecoration(hintText: 'id'),
                 ),
                 TextField(
                   controller: name,
+                  decoration: const InputDecoration(hintText: 'name'),
                 ),
                 TextField(
                   controller: age,
+                  decoration: const InputDecoration(hintText: 'age'),
                 ),
                 TextField(
                   controller: address,
+                  decoration: const InputDecoration(hintText: 'address'),
                 ),
                 TextField(
                   controller: description,
+                  decoration: const InputDecoration(hintText: 'hint'),
                 ),
                 TextField(
                   controller: location,
+                  decoration: const InputDecoration(hintText: 'location'),
                 ),
               ],
             ),
