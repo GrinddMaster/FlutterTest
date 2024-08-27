@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebaseimpl/ui/student_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebaseimpl/model/student.dart';
@@ -9,18 +10,30 @@ class StudentListview extends StatefulWidget {
   State<StatefulWidget> createState() => _StudentList();
 }
 
-final studenRef = FirebaseDatabase.instance.ref().child('student');
+final studentRef = FirebaseDatabase.instance.ref().child('student');
 
 class _StudentList extends State<StudentListview> {
 //TODO: get the list of students from the firebase database
-//TODO: Do crud with firebase. 
+//TODO:implement CRUD with 🔥base
 
+  late List<Student> items;
+  late StreamSubscription onStudentSubAdded;
+  late StreamSubscription onStudentSubUpdated;
+  late StreamSubscription onStudentSubRemoved;
 
-late List<Student> items;
-StreamSubscription onStudentAdded;
-StreamSubscription onStudentChanged;
-StreamSubscription onStudentRemoved;
+  @override
+  void initState() {
+    super.initState();
+    onStudentSubAdded = studentRef.onChildAdded.listen(onStudentAdded);
+    onStudentSubUpdated = studentRef.onChildAdded.listen(onStudentUpdated);
+  }
 
+  @override
+  void dispose() {
+    super.dispose();
+    onStudentSubAdded.cancel();
+    onStudentSubUpdated.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +52,63 @@ StreamSubscription onStudentRemoved;
             child: Column(
               children: [
                 ListView.builder(
+                  itemCount: items.length,
+                  padding: const EdgeInsets.all(12),
                   itemBuilder: (BuildContext context, int index) {
                     return const ListTile();
                   },
-                )
+                ),
+                const Divider(
+                  height: 3,
+                ),
               ],
             ),
           ),
         ),
+        floatingActionButton: IconButton(
+          onPressed: () {
+            navigateToStudent(Student(
+                id: 10,
+                name: 'ali',
+                age: 20,
+                address: 'test',
+                description: 'testingdescription',
+                department: 'testdepartment'));
+          },
+          icon: const Icon(Icons.add),
+        ),
       ),
     );
+  }
+
+  void onStudentAdded(DatabaseEvent event) {
+    setState(() {
+      items.add(Student.fromSnapshot(event.snapshot));
+    });
+  }
+
+  void onStudentUpdated(DatabaseEvent event) {
+    var oldStudent =
+        items.singleWhere((student) => student.id == event.snapshot.key);
+    setState(() {
+      items[items.indexOf(oldStudent)] = Student.fromSnapshot(event.snapshot);
+    });
+  }
+
+  void onStudentRemoved(
+      BuildContext context, Student student, int index) async {
+    //TODO: fix the child, the id isn't a String.
+    await studentRef.child(student.id.toString()).remove().then((_) {
+      setState(() {
+        items.removeAt(index);
+      });
+    });
+  }
+
+  void navigateToStudent(Student student) async {
+    await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => StudentScreen(student.id)));
   }
 }
