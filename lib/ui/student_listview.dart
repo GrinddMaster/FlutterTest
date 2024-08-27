@@ -106,7 +106,7 @@ class _StudentList extends State<StudentListview> {
   }
 
   void navigateToStudent(Student student) async {
-	  //TODO: ftech the student info from the database and show it on the student screen.
+    //TODO: ftech the student info from the database and show it on the student screen.
     await Navigator.push(
         context,
         MaterialPageRoute(

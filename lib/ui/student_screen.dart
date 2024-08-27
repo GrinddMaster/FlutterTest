@@ -1,14 +1,13 @@
 import 'package:firebaseimpl/model/student.dart';
 import 'package:flutter/material.dart';
 
-TextEditingController id=TextEditingController(); 
-TextEditingController name=TextEditingController(); 
-TextEditingController age=TextEditingController(); 
-TextEditingController address=TextEditingController(); 
-TextEditingController description=TextEditingController(); 
-TextEditingController department=TextEditingController(); 
-TextEditingController location=TextEditingController(); 
-
+TextEditingController id = TextEditingController();
+TextEditingController name = TextEditingController();
+TextEditingController age = TextEditingController();
+TextEditingController address = TextEditingController();
+TextEditingController description = TextEditingController();
+TextEditingController department = TextEditingController();
+TextEditingController location = TextEditingController();
 
 class StudentScreen extends StatefulWidget {
   final Student student;
@@ -28,30 +27,31 @@ class _StuScrn extends State<StudentScreen> {
         ),
         body: Container(
           color: Colors.grey,
-          child: Padding(padding:const EdgeInsets.all(10) ,
-          	child: Column(
-				children: [
-					TextField(
-						controller:id ,
-						),
-					TextField(
-						controller:name,
-						),
-					TextField(
-						controller:age,
-						),
-					TextField(
-						controller:address,
-						),
-					TextField(
-						controller:description,
-						),
-					TextField(
-						controller:location,
-						),
-				],
-				),
-          	),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                TextField(
+                  controller: id,
+                ),
+                TextField(
+                  controller: name,
+                ),
+                TextField(
+                  controller: age,
+                ),
+                TextField(
+                  controller: address,
+                ),
+                TextField(
+                  controller: description,
+                ),
+                TextField(
+                  controller: location,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
