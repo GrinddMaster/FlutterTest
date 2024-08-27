@@ -52,10 +52,13 @@ class _StudentList extends State<StudentListview> {
             child: Column(
               children: [
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: /*items.length*/ 1,
                   padding: const EdgeInsets.all(12),
                   itemBuilder: (BuildContext context, int index) {
-                    return const ListTile();
+                    return const ListTile(
+                      title: Text('Test'),
+                      leading: Icon(Icons.person),
+                    );
                   },
                 ),
                 const Divider(

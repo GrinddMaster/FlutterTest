@@ -1,7 +1,8 @@
+import 'package:firebaseimpl/ui/student_listview.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 void main() {
+  //const StudentListview();
   runApp(const MyApp());
 }
 
@@ -31,10 +32,23 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('FireBaseTest'),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const StudentListview()));
+                },
+                child: const Text('Move'),
+              ),
+            ),
+          ],
         ),
       ),
     );
