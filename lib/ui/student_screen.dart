@@ -57,22 +57,16 @@ class _StuScrn extends State<StudentScreen> {
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(hintText: 'Description'),
                 ),
-                TextField(
-                  controller: location,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(hintText: 'Location'),
-                ),
                 ElevatedButton(
                   onPressed: () {
                     if (widget.student.id.isEmpty) {
                       studentRef.child(widget.student.id).set({
-                        'Id': id,
-                        'Name': name,
-                        'Age': age,
-                        'Address': address,
-                        'Description': description,
-                        'Department': department,
-                        'Location': location
+                        'Id': id.text,
+                        'Name': name.text,
+                        'Age': age.text,
+                        'Address': address.text,
+                        'Description': description.text,
+                        'Department': department.text,
                       }).then((_) {
                         //Makes sure that the widget that gave the context is still in the widget tree and I am poping the correct context.
                         //Otherwise I would be poping with a context that doesn't exist. Which would cause errors and unexpected behaviour.
@@ -82,13 +76,12 @@ class _StuScrn extends State<StudentScreen> {
                     } else {
                       studentRef.push().set({
                         //This just updates the existing student.
-                        'Id': id,
-                        'Name': name,
-                        'Age': age,
-                        'Address': address,
-                        'Description': description,
-                        'Department': department,
-                        'Location': location
+                        'Id': id.text,
+                        'Name': name.text,
+                        'Age': age.text,
+                        'Address': address.text,
+                        'Description': description.text,
+                        'Department': department.text,
                       }).then((_) {
                         if (!context.mounted) return;
                         Navigator.pop(context);
