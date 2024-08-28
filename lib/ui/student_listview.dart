@@ -10,13 +10,13 @@ class StudentListview extends StatefulWidget {
   State<StatefulWidget> createState() => _StudentList();
 }
 
-final studentRef = FirebaseDatabase.instance.ref().child('student');
+final studentRef = FirebaseDatabase.instance.ref().child('flutter-implement');
 
 class _StudentList extends State<StudentListview> {
 //TODO: get the list of students from the firebase database
 //TODO:implement CRUD with 🔥base
 
-  late List<Student> items;
+  late List<Student> items = [];
   late StreamSubscription onStudentSubAdded;
   late StreamSubscription onStudentSubUpdated;
   late StreamSubscription onStudentSubRemoved;
@@ -69,6 +69,7 @@ class _StudentList extends State<StudentListview> {
           ),
         ),
         floatingActionButton: IconButton(
+          color: Colors.blue,
           onPressed: () {
             createToStudent(context);
           },
@@ -103,7 +104,7 @@ class _StudentList extends State<StudentListview> {
 
   void createToStudent(BuildContext context) async {
     //TODO: fetch the student info from the database and show it on the student screen.
-    await Navigator.push(
+    await Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => StudentScreen(Student(

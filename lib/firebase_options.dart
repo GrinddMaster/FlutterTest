@@ -73,6 +73,6 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-implement',
     databaseURL: 'https://flutter-implement-default-rtdb.firebaseio.com',
     storageBucket: 'flutter-implement.appspot.com',
-    iosBundleId: 'com.example.firebaseimpl',
+    iosBundleId: 'com.firebasefluttertest.app',
   );
 }
