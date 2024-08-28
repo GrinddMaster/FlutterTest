@@ -1,4 +1,5 @@
 import 'package:firebaseimpl/model/student.dart';
+import 'package:firebaseimpl/ui/student_listview.dart';
 import 'package:flutter/material.dart';
 
 TextEditingController id = TextEditingController();
@@ -33,30 +34,48 @@ class _StuScrn extends State<StudentScreen> {
               children: [
                 TextField(
                   controller: id,
-                  decoration: const InputDecoration(hintText: 'id'),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Id'),
                 ),
                 TextField(
                   controller: name,
-                  decoration: const InputDecoration(hintText: 'name'),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Name'),
                 ),
                 TextField(
                   controller: age,
-                  decoration: const InputDecoration(hintText: 'age'),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Age'),
                 ),
                 TextField(
                   controller: address,
-                  decoration: const InputDecoration(hintText: 'address'),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Address'),
                 ),
                 TextField(
                   controller: description,
-                  decoration: const InputDecoration(hintText: 'description'),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Description'),
                 ),
                 TextField(
                   controller: location,
-                  decoration: const InputDecoration(hintText: 'location'),
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Location'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (widget.student.id.isEmpty) {
+                      studentRef.child(widget.student.id).set({
+                        'Id': id,
+                        'Name': name,
+                        'Age': age,
+                        'Address': address,
+                        'Description': description,
+                        'Department': department,
+                        'Location': location
+                      });
+                    }
+                  },
                   child: (widget.student.id.isNotEmpty)
                       ? const Text('Update')
                       : const Text('Add'),

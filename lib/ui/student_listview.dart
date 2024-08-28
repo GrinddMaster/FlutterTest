@@ -52,7 +52,7 @@ class _StudentList extends State<StudentListview> {
             child: Column(
               children: [
                 ListView.builder(
-                  itemCount: /*items.length*/ 1,
+                  itemCount: items.length,
                   padding: const EdgeInsets.all(12),
                   itemBuilder: (BuildContext context, int index) {
                     return const ListTile(
@@ -70,13 +70,7 @@ class _StudentList extends State<StudentListview> {
         ),
         floatingActionButton: IconButton(
           onPressed: () {
-            navigateToStudent(Student(
-                id: 'userid',
-                name: 'ali',
-                age: 20,
-                address: 'test',
-                description: 'testingdescription',
-                department: 'testdepartment'));
+            createToStudent(context);
           },
           icon: const Icon(Icons.add),
         ),
@@ -107,11 +101,17 @@ class _StudentList extends State<StudentListview> {
     });
   }
 
-  void navigateToStudent(Student student) async {
-    //TODO: ftech the student info from the database and show it on the student screen.
+  void createToStudent(BuildContext context) async {
+    //TODO: fetch the student info from the database and show it on the student screen.
     await Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => StudentScreen(student)));
+            builder: (BuildContext context) => StudentScreen(Student(
+                id: 'userid',
+                name: 'ali',
+                age: 20,
+                address: 'test',
+                description: 'testingdescription',
+                department: 'testdepartment'))));
   }
 }
