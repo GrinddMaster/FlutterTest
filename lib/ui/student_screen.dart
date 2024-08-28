@@ -73,6 +73,25 @@ class _StuScrn extends State<StudentScreen> {
                         'Description': description,
                         'Department': department,
                         'Location': location
+                      }).then((_) {
+                        //Makes sure that the widget that gave the context is still in the widget tree and I am poping the correct context.
+                        //Otherwise I would be poping with a context that doesn't exist. Which would cause errors and unexpected behaviour.
+                        if (!context.mounted) return;
+                        Navigator.pop(context);
+                      });
+                    } else {
+                      studentRef.push().set({
+                        //This just updates the existing student.
+                        'Id': id,
+                        'Name': name,
+                        'Age': age,
+                        'Address': address,
+                        'Description': description,
+                        'Department': department,
+                        'Location': location
+                      }).then((_) {
+                        if (!context.mounted) return;
+                        Navigator.pop(context);
                       });
                     }
                   },
