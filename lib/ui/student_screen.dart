@@ -8,7 +8,6 @@ TextEditingController age = TextEditingController();
 TextEditingController address = TextEditingController();
 TextEditingController description = TextEditingController();
 TextEditingController department = TextEditingController();
-TextEditingController location = TextEditingController();
 
 class StudentScreen extends StatefulWidget {
   final Student student;

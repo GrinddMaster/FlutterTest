@@ -107,11 +107,12 @@ class _StudentList extends State<StudentListview> {
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => StudentScreen(Student(
-                id: 'userid',
-                name: 'ali',
-                age: 20,
-                address: 'test',
-                description: 'testingdescription',
-                department: 'testdepartment'))));
+                //this is a place holder student that is sent so I can add an actual student to the database.
+                id: '',
+                name: '',
+                age: 0,
+                address: '',
+                description: '',
+                department: ''))));
   }
 }
