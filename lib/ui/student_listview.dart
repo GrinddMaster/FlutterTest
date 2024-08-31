@@ -10,12 +10,9 @@ class StudentListview extends StatefulWidget {
   State<StatefulWidget> createState() => _StudentList();
 }
 
-final studentRef = FirebaseDatabase.instance.ref().child('flutter-implement');
+final studentRef = FirebaseDatabase.instance.ref().child('student');
 
 class _StudentList extends State<StudentListview> {
-//TODO: get the list of students from the firebase database
-//TODO:implement CRUD with 🔥base
-
   late List<Student> items = [];
   late StreamSubscription onStudentSubAdded;
   late StreamSubscription onStudentSubUpdated;
@@ -24,8 +21,9 @@ class _StudentList extends State<StudentListview> {
   @override
   void initState() {
     super.initState();
+    //When there's a change in the firebase. The onStudentAdded is called automatically.
     onStudentSubAdded = studentRef.onChildAdded.listen(onStudentAdded);
-    onStudentSubUpdated = studentRef.onChildAdded.listen(onStudentUpdated);
+    onStudentSubUpdated = studentRef.onChildChanged.listen(onStudentUpdated);
   }
 
   @override
@@ -46,30 +44,25 @@ class _StudentList extends State<StudentListview> {
           ),
           backgroundColor: Colors.orangeAccent,
         ),
-        body: Center(
-          child: Container(
-            color: Colors.deepOrangeAccent,
-            child: Column(
-              children: [
-                ListView.builder(
-                  itemCount: items.length,
-                  padding: const EdgeInsets.all(12),
-                  itemBuilder: (BuildContext context, int index) {
-                    return const ListTile(
-                      title: Text('Test'),
-                      leading: Icon(Icons.person),
-                    );
-                  },
+        body: SizedBox(
+          height: 700,
+          width: 500,
+          child: ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                color: Colors.blue,
+                child: ListTile(
+                  title: Text('Name: ${items[index].name}'),
+                  subtitle: Text(items[index].description),
+                  leading: const Icon(Icons.person),
                 ),
-                const Divider(
-                  height: 3,
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ),
         floatingActionButton: IconButton(
-          color: Colors.blue,
+          color: Colors.red,
           onPressed: () {
             createToStudent(context);
           },
@@ -95,7 +88,7 @@ class _StudentList extends State<StudentListview> {
 
   void onStudentRemoved(
       BuildContext context, Student student, int index) async {
-    await studentRef.child(student.id).remove().then((_) {
+    await studentRef.child(student.id!).remove().then((_) {
       setState(() {
         items.removeAt(index);
       });
@@ -103,7 +96,6 @@ class _StudentList extends State<StudentListview> {
   }
 
   void createToStudent(BuildContext context) async {
-    //TODO: fetch the student info from the database and show it on the student screen.
     await Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -111,7 +103,7 @@ class _StudentList extends State<StudentListview> {
                 //this is a place holder student that is sent so I can add an actual student to the database.
                 id: '',
                 name: '',
-                age: 0,
+                age: '',
                 address: '',
                 description: '',
                 department: ''))));

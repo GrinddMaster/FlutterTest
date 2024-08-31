@@ -2,7 +2,6 @@ import 'package:firebaseimpl/model/student.dart';
 import 'package:firebaseimpl/ui/student_listview.dart';
 import 'package:flutter/material.dart';
 
-TextEditingController id = TextEditingController();
 TextEditingController name = TextEditingController();
 TextEditingController age = TextEditingController();
 TextEditingController address = TextEditingController();
@@ -23,6 +22,16 @@ class _StuScrn extends State<StudentScreen> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Student_Screen 🤯'),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const StudentListview()));
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
           backgroundColor: Colors.blueAccent,
         ),
         body: Container(
@@ -31,11 +40,6 @@ class _StuScrn extends State<StudentScreen> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                TextField(
-                  controller: id,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(hintText: 'Id'),
-                ),
                 TextField(
                   controller: name,
                   style: const TextStyle(color: Colors.white),
@@ -56,26 +60,31 @@ class _StuScrn extends State<StudentScreen> {
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(hintText: 'Description'),
                 ),
+                TextField(
+                  controller: department,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(hintText: 'Department'),
+                ),
                 ElevatedButton(
                   onPressed: () {
-                    if (widget.student.id.isEmpty) {
-                      studentRef.child(widget.student.id).set({
-                        'Id': id.text,
+                    if (widget.student.id == null) {
+                      studentRef.child(widget.student.id!).set({
                         'Name': name.text,
                         'Age': age.text,
                         'Address': address.text,
                         'Description': description.text,
                         'Department': department.text,
                       }).then((_) {
-                        //Makes sure that the widget that gave the context is still in the widget tree and I am poping the correct context.
-                        //Otherwise I would be poping with a context that doesn't exist. Which would cause errors and unexpected behaviour.
                         if (!context.mounted) return;
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const StudentListview()));
                       });
                     } else {
                       studentRef.push().set({
                         //This just updates the existing student.
-                        'Id': id.text,
                         'Name': name.text,
                         'Age': age.text,
                         'Address': address.text,
@@ -83,11 +92,15 @@ class _StuScrn extends State<StudentScreen> {
                         'Department': department.text,
                       }).then((_) {
                         if (!context.mounted) return;
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const StudentListview()));
                       });
                     }
                   },
-                  child: (widget.student.id.isNotEmpty)
+                  child: (widget.student.id != null)
                       ? const Text('Update')
                       : const Text('Add'),
                 ),

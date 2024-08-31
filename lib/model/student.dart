@@ -1,9 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Student {
-  String id = '';
+  String? id = '';
   String name = '';
-  int age = 0;
+  String age = '';
   String address = '';
   String description = '';
   String department = '';
@@ -27,11 +27,12 @@ class Student {
   }
 
   Student.fromSnapshot(DataSnapshot snap) {
-    id = (snap.value as Map<String, dynamic>)['Id'];
-    name = (snap.value as Map<String, dynamic>)['Name'];
-    age = (snap.value as Map<String, dynamic>)['Age'];
-    address = (snap.value as Map<String, dynamic>)['Address'];
-    description = (snap.value as Map<String, dynamic>)['Description'];
-    department = (snap.value as Map<String, dynamic>)['Department'];
+    //It's important when getting the id making it a key that's given by the firebase.
+    id = snap.key;
+    name = snap.child('Name').value as String;
+    age = snap.child('Age').value as String;
+    address = snap.child('Address').value as String;
+    description = snap.child('Description').value as String;
+    department = snap.child('Department').value as String;
   }
 }
