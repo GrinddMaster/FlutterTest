@@ -56,6 +56,14 @@ class _StudentList extends State<StudentListview> {
                   title: Text('Name: ${items[index].name}'),
                   subtitle: Text(items[index].description),
                   leading: const Icon(Icons.person),
+                  trailing: IconButton(
+                    onPressed: () {
+                      onStudentRemoved(context, items[index], index);
+                    },
+                    icon: const Icon(
+                      Icons.delete_rounded,
+                    ),
+                  ),
                 ),
               );
             },
