@@ -1,3 +1,4 @@
+import 'package:firebaseimpl/Views/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -10,28 +11,33 @@ class SignUp extends StatefulWidget {
 class SignUpPage extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text("Sign Up"),
-            ),
-            body: const Center(
-              child: Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(hintText: "UserName"),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(hintText: "Password"),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(hintText: "Confirm Password"),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(hintText: "Phone Number"),
-                  ),
-                ],
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Sign Up"),
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              const TextField(
+                decoration: InputDecoration(hintText: "UserName"),
               ),
-            )));
+              const TextField(
+                decoration: InputDecoration(hintText: "Password"),
+              ),
+              const TextField(
+                decoration: InputDecoration(hintText: "Confirm Password"),
+              ),
+              const TextField(
+                decoration: InputDecoration(hintText: "Phone Number"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Confirm"),
+              )
+            ],
+          ),
+        ));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebaseimpl/Views/sign_up.dart';
 import 'package:flutter/material.dart';
 
 //Flags
@@ -14,46 +15,53 @@ class SignIn extends StatefulWidget {
 class SignPage extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Sign In 👤"),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              const Text("Welcome!"),
-              const TextField(
-                decoration: InputDecoration(
-                  hintText: "UserName",
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Sign In 👤"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            const Text("Welcome!"),
+            const TextField(
+              decoration: InputDecoration(
+                hintText: "UserName",
+              ),
+            ),
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: "Password",
+              ),
+            ),
+            Row(
+              children: [
+                const Text("Remember me: "),
+                Checkbox(
+                  value: checkbox,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      checkbox = value;
+                    });
+                  },
                 ),
+              ],
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const SignUp()));
+              },
+              child: const Text(
+                "Sign Up",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                ),
-              ),
-              Row(
-                children: [
-                  const Text("Remember me: "),
-                  Checkbox(
-                    value: checkbox,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checkbox = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              const Text("Sign up."),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text("Get in!"),
-              ),
-            ],
-          ),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text("Get in!"),
+            ),
+          ],
         ),
       ),
     );
