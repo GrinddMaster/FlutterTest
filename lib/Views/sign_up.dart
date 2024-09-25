@@ -1,4 +1,3 @@
-import 'package:firebaseimpl/Views/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
